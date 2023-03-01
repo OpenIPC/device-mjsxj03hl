@@ -1,2 +1,1 @@
-## OpenIPC for Xiaomi MJSXJ02HL
-
+docs/index.md
