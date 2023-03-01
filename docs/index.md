@@ -1,5 +1,5 @@
 ## OpenIPC for Xiaomi MJSXJ03HL (UNDER CONSTRUCTION!!!) 
-[Версия на руском языке](https://github.com/OpenIPC/device-mjsxj03hl/edit/master/docs/ru_index.md)
+[Версия на русском языке](https://github.com/OpenIPC/device-mjsxj03hl/edit/master/docs/ru_index.md)
 ![Изображение](https://user-images.githubusercontent.com/88727968/222164240-66044bf1-16da-4ea2-af38-6fd3d3fb1b92.png)
 
 Attention! Any changes you make will void your warranty for this device! The author is not responsible for any damage resulting from any actions of the user!
@@ -13,7 +13,7 @@ We will need:
 - A flat, thin object, such as a utility knife
 - Long thin x-type screwdriver
 - Accuracy
-- 
+
 So, let's go:
 1) Gently warm up the front of the camera (where the lens is)
 2) Using a utility knife or other pointed object, carefully pry off the front part. Remember, there are important wires under the front, ***don't damage them!***
