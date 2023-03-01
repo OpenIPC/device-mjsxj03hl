@@ -1,2 +1,2 @@
-# device-mjsxj03hl
-OpenIPC for Xiaomi MJSXJ03HL
+## OpenIPC for Xiaomi MJSXJ02HL
+
