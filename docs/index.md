@@ -44,6 +44,7 @@ So, let's go:
 3) Working in a circle, carefully separate the front part from the camera body. ***Remember that it is wired to the main board of the camera!***
 4) Under the bottom you will find two screws that need to be removed. After that, carefully separate the halves of the camera body. Be careful not to hurt yourself or damage the connecting wires or parts of the camera!
 5) Unscrew a few more screws, freeing the main board of the device. Also free the type C port
+________________
 
 ### Discovering
 Examine the camera carefully, find the necessary elements, because in the next steps we will have to physically interact with some of them.
