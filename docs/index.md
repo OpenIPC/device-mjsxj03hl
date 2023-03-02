@@ -1,8 +1,10 @@
 ## OpenIPC for Xiaomi MJSXJ03HL (UNDER CONSTRUCTION!!!) 
 [Версия на русском языке](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/docs/ru_index.md)
+
 ![Изображение](https://user-images.githubusercontent.com/88727968/222164240-66044bf1-16da-4ea2-af38-6fd3d3fb1b92.png)
 
 Attention! Any changes you make will void your warranty for this device! The author is not responsible for any damage resulting from any actions of the user!
+_______________
 
 ### Connecting UART adapter
 
@@ -23,7 +25,7 @@ Operating procedure:
 4) Use terminal. Run the `lsusb` command and carefully examine the output. Find your UART adapter.
 5) Use terminal. Run the command `dmesg | grep attached` from superuser. Compare the output of both commands and find the adapter mount point. For example, use the screenshot below: ![Screenshot_20230301_210433](https://user-images.githubusercontent.com/88727968/222186693-932e241c-5f92-4876-b4de-e51271ea6ae9.png)
 6) So, we got that our device is mounted at `/dev/ttyUSB0`. In your case, the mount address may be different. We will use this address when connecting via UART. Be careful, when connecting several such devices, as well as when disconnecting incorrectly, the mount address may change.
-
+_____________________________
 
 ### Disassembling
 
@@ -48,19 +50,20 @@ Examine the camera carefully, find the necessary elements, because in the next s
 The manufacturer may change some components of the device without notifying consumers. For this reason, two cameras released at different times may have different hardware and different software. Therefore, once again carefully study the components, make sure that they correspond to those indicated in this manual. If you have any questions, please contact our [Telegram channel](https://t.me/OpenIPC)
 
 ##### Main board (front view)
-![IMG_20210904_194002](https://user-images.githubusercontent.com/88727968/222473262-913af0d1-0fee-4ae6-843f-256784381163.jpg)Main board (front view)
+![IMG_20210904_194002](https://user-images.githubusercontent.com/88727968/222473262-913af0d1-0fee-4ae6-843f-256784381163.jpg "Main board (front view)")
 
 The most important part for us on it is the memory chip.
 ##### Memory chip 
-![IMG_20210904_194034](https://user-images.githubusercontent.com/88727968/222473270-dfb08412-0019-4a57-aecc-3820421263e8.jpg)Memory chip on it.
+![IMG_20210904_194034](https://user-images.githubusercontent.com/88727968/222473270-dfb08412-0019-4a57-aecc-3820421263e8.jpg "Memory chip on it.")
 
 It has a numerical-alphabetic marking. Make sure the chip on your board has a similar marking! The number 128 means the number of bits of memory. 128/8=16, so our memory is 16 MB. You need to choose the firmware for this type of memory!
 ##### Main board (rear view)
-![IMG_20210904_194151](https://user-images.githubusercontent.com/88727968/222473288-c3efcdc6-2691-452f-aebb-9ab1789d4d2d.jpg)Main board (rear view)
+![IMG_20210904_194151](https://user-images.githubusercontent.com/88727968/222473288-c3efcdc6-2691-452f-aebb-9ab1789d4d2d.jpg "Main board (rear view)")
 
 This is where the wireless module, CPU, and various other components are located.
 
 ##### CPU
-![IMG_20210904_194132](https://user-images.githubusercontent.com/88727968/222473285-9c00e6d9-f585-4481-a48b-867b0c1f3a85.jpg)CPU
+![IMG_20210904_194132](https://user-images.githubusercontent.com/88727968/222473285-9c00e6d9-f585-4481-a48b-867b0c1f3a85.jpg "CPU")
 
 In our case, it has a numerical-alphabetic marking. Ingenic T31N. The letter N is a series. It is listed in the second row. [More](https://wiki.openipc.org/en/installation.html#step-1-determine-the-system-on-chip)
+_________
