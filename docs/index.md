@@ -61,10 +61,37 @@ It has a numerical-alphabetic marking. Make sure the chip on your board has a si
 ##### Main board (rear view)
 ![IMG_20210904_194151](https://user-images.githubusercontent.com/88727968/222473288-c3efcdc6-2691-452f-aebb-9ab1789d4d2d.jpg "Main board (rear view)")
 
-This is where the wireless module, CPU, and various other components are located.
+This is where the wireless module, CPU, and various other components are located. But the most important thing for us is the three contacts with a hole, located side by side in the upper right sector of the board. It is through them that we give control signals to the camera.
 
 ##### CPU
 ![IMG_20210904_194132](https://user-images.githubusercontent.com/88727968/222473285-9c00e6d9-f585-4481-a48b-867b0c1f3a85.jpg "CPU")
 
 In our case, it has a numerical-alphabetic marking. Ingenic T31N. The letter N is a series. It is listed in the second row. [More](https://wiki.openipc.org/en/installation.html#step-1-determine-the-system-on-chip)
 _________
+### Connecting the camera and UART adapter
+
+In order to connect the UART adapter to the camera board, you need to use the wires with terminals. They can come with a UART adapter. However, they can be replaced with similar ones. Similar connection types are found in a variety of electronics. The second end of the wire to the board should be soldered so that the contact does not disappear at the right time. Be careful when soldering, do not damage the circuit elements and do not short the contacts together!
+
+![IMG_20210904_1941511](https://user-images.githubusercontent.com/88727968/222906480-dea0a59c-2dab-45e3-96fa-81cf335b745b.jpg)
+
+Connect the wires coming from the UART adapter to the board as shown in the figure. If you did everything right, the camera will show the log during the boot. Let's check it out.
+
+#### Checking the functionality of the terminal, camera and connection
+
+First, we need to install a terminal program to send control commands from the camera and receive feedback. Linux has a fairly large number of terminals, you can choose the most convenient for you. Among them are **screen, picocom, minicom, cutecom**. The latter has a GUI.
+Install the terminal program:
+```sudo apt install <NAME>```
+The commands will be given for the picocom program.
+To get started, familiarize yourself with the program's capabilities and command syntax:
+```picocom --help``` 
+Connect the UART adapter and run the command in the terminal:
+```
+picocom -b 115200 /dev/ttyUSB0
+```
+where the `-b` option specifies the baudrate, and `/dev/ttyUSB0` is the mount point address we learned earlier.
+
+If you did everything right, the program will write that the terminal is ready to work. Familiarize yourself with terminal control commands by pressing the key sequence `Ctrl+A Ctrl+H`. For a more detailed understanding of the terminal program, refer to the relevant manuals on the web.
+
+If you power up the camera, you will see the boot log. Try pressing keys such as `Enter` and make sure that the terminal responds to them and sends events. If everything is done correctly, you can proceed to the next step.
+____________
+
