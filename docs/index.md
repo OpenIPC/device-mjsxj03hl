@@ -95,3 +95,22 @@ If you did everything right, the program will write that the terminal is ready t
 If you power up the camera, you will see the boot log. Try pressing keys such as `Enter` and make sure that the terminal responds to them and sends events. If everything is done correctly, you can proceed to the next step.
 ____________
 
+### Get access to the bootloader
+Unfortunately, the MJSXJ03HL camera does not support boot interruption by sending a key combination. For this reason, boot interrupting and gaining access to the downloader console will be done by us manually. To do this, it will be necessary to close some contacts of the [memory chip](https://github.com/OpenIPC/device-mjsxj03hl#memory-chip).
+For how to do this, read [here](https://wiki.openipc.org/en/faq.html#how-to-get-into-bootloader-shell).
+Carefully study the above manual, find the memory chip and the necessary contacts, prepare what you will close the contacts with. All manipulations will have to be done quickly enough.
+ATTENTION!!! You take full responsibility for your actions!
+The following is the sequence of actions to gain access to the bootloader console:
+1. Connect the camera to the UART adapter
+2. Connect the UART adapter to the computer's USB port.
+3. Launch the terminal on the computer, make sure it sees the UART adapter
+4. Get ready to close the contacts
+5. Apply power to the board
+6. The download log should appear in the terminal window
+7. Close the contacts of the memory chip (This must be done 0.5-1 sec after power is applied)
+8. The download should abort. Contacts can be opened.
+9. If you did everything correctly, the U-boot console will appear on the screen with a `#` symbol and the ability to enter.
+10. Type `help` to list the commands present in the bootloader
+
+Unfortunately, the manufacturer for this camera greatly limited the capabilities of U-boot, this will create a series of obstacles for us in the future until we flash U-boot from OpenIPC. But first we need to save the stock firmware of the camera.
+__________
