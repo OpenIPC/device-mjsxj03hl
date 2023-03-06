@@ -114,3 +114,38 @@ The following is the sequence of actions to gain access to the bootloader consol
 
 Unfortunately, the manufacturer for this camera greatly limited the capabilities of U-boot, this will create a series of obstacles for us in the future until we flash U-boot from OpenIPC. But first we need to save the stock firmware of the camera.
 __________
+### Save the original firmware
+Attention! Do not let this point! The backup of the factory firmware will allow you to restore the performance of the device, if suddenly something goes wrong.
+
+We will need:
+- Camera disassembled with connected UART
+- Computer
+- SD card with a capacity of at least 16 MB
+It is first recommended to familiarize yourself with [the original article](https://wiki.openipc.org/en/help-uboot.html#saving-firmware-via-sd-card)
+
+ATTENTION! During the following manipulations, all information from the SD card will be inaccessible, and the card itself cannot be used before formatting! All data, located on the map will be irrevocably lost!
+
+The card must be inserted into the camera slot. The UART-adapter must be attached to the computer, and the terminal program is launched.
+
+1) Interrupt the loading of the camera by closing the contacts, we get into the bootloader console.
+2) If the SD card was inserted after the load interruption, perform `mmc rescan`
+3) First, we clean the required space for recording a dump of the original firmware there:
+```
+mmc dev 0
+mmc erase 0x10 0x8000
+```
+4) Now you need to copy the contents of the firmware from the flash memory chip into the RAM of the camera. To do this, clean the site of RAM, get access to the flash memory chip and copy the entire volume of flash memory into the purified space of RAM. Then save the copied data from RAM to the card. Insert the commands line-by-line!
+```
+mw.b 0x80600000 ff 0x1000000
+sf probe 0
+sf read 0x80600000 0x0 0x1000000
+mmc write 0x80600000 0x10 0x8000
+```
+_where `0x80600000` - Load address of Ingenic T31N._
+
+Remove the card from the camera and insert into the computer with the Linux operating system. Using the `dd` command, copy the data from the card to the binary file on the computer disk.
+```
+dd bs=512 skip=16 count=32768 if=/dev/sdc of=./fulldump.bin
+```
+_Attention! The mounting point of `sdc` may differ (sda, sdb), depending on the connected equipment of your computer ._
+_______
