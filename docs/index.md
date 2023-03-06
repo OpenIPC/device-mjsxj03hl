@@ -149,3 +149,13 @@ dd bs=512 skip=16 count=32768 if=/dev/sdc of=./fulldump.bin
 ```
 _Attention! The mounting point of `sdc` may differ (sda, sdb), depending on the connected equipment of your computer ._
 _______
+
+### Firmware generation
+To obtain firmware and instructions, use [Automatic generator Instruction for our processor](https://openipc.org/cameras/Vendors/ingenic/socs/t31n)
+Fill the required fields and indicate your MAC address. Like this:
+![Image](https://user-images.githubusercontent.com/88727968/223147951-c72fdd86-eaf8-415e-b17e-82026739aa96.png)
+Generate the firmware. Carefully study the page with firmware and instructions.
+Unfortunately, the manufacturer did not add a TFTP program to the factory bootloader, therefore we will flash our firmware in parts and manually.
+Go to the section **Alternatively, flash OpenIPC Firmware by its parts** and download the bootloader's binary file to the link. You should get a binary file **u-boot-t31n-universal.bin**. Do not close the page with the instructions. We will need it later.
+
+Place the resulting file on your SD card. **Attention!** If you use the same memory card as in the last paragraph, format it in MBR (MS-DOS). Do not use GPT! If you use Windows OS, this is the most common formatting. Just connect the memory card and Windiows yourself will offer it to format it.
