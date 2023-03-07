@@ -159,3 +159,34 @@ Unfortunately, the manufacturer did not add a TFTP program to the factory bootlo
 Go to the section **Alternatively, flash OpenIPC Firmware by its parts** and download the bootloader's binary file to the link. You should get a binary file **u-boot-t31n-universal.bin**. Do not close the page with the instructions. We will need it later.
 
 Place the resulting file on your SD card. **Attention!** If you use the same memory card as in the last paragraph, format it in MBR (MS-DOS). Do not use GPT! If you use Windows OS, this is the most common formatting. Just connect the memory card and Windiows yourself will offer it to format it.
+
+### UBoot flashing
+So, we have our camera connected to the UART, in the slot of which a memory card is inserted, formatted in Fat32 with a bootloader binary file on it.
+Just in case, let's do
+```
+mmc rescan
+```
+and additionally check that you did everything correctly
+```
+fatls mmc 0:1
+```
+Your memory card data should come out. If any errors come up, do not continue until they are fixed! Otherwise, flashing the camera will be possible only on special equipment.
+
+At the beginning, we will enter the environment variables with the `setenv` command
+```
+setenv baseaddr 0x80600000
+setenv flashsize 0x1000000
+```
+The factory bootloader does not support saving variables, so if the camera was rebooted, you will have to enter it again.
+
+Now we proceed to the most crucial moment - U-Boot flashing. Insert commands line by line! Be careful that the commands do not return errors! Do not continue if something goes wrong, do not try to restart the camera, ask for help in our [Telegram channel](https://t.me/openipc)
+```
+mw.b ${baseaddr} 0xff 0x50000
+sf probe 0
+sf erase 0x0 0x50000
+fatload mmc 0:1 ${baseaddr} u-boot-t31n-universal.bin
+sf write ${baseaddr} 0x0 ${filesize}
+```
+If everything went well, then you now have a new bootloader from OpenIPC that supports all the necessary commands.
+Command `reset` in the bootloader console, the camera will reboot. Camera loading can now be interrupted by pressing `Ctrl+C`
+________________
