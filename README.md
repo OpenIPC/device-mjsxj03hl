@@ -1,11 +1,11 @@
-## OpenIPC for Xiaomi MJSXJ03HL (UNDER CONSTRUCTION!!!) 
+# OpenIPC for Xiaomi MJSXJ03HL (UNDER CONSTRUCTION!!!) 
 [Версия на русском языке](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/README_ru.md)
 
 ![Изображение](https://user-images.githubusercontent.com/88727968/222164240-66044bf1-16da-4ea2-af38-6fd3d3fb1b92.png)
 
 Attention! Any changes you make will void your warranty for this device! The author is not responsible for any damage resulting from any actions of the user!
 _______________
-
+## Preparation
 ### Connecting UART adapter
 
 We will need:
@@ -150,6 +150,8 @@ dd bs=512 skip=16 count=32768 if=/dev/sdc of=./fulldump.bin
 _Attention! The mounting point of `sdc` may differ (sda, sdb), depending on the connected equipment of your computer ._
 _______
 
+## Flashing
+
 ### Firmware generation
 To obtain firmware and instructions, use [Automatic generator Instruction for our processor](https://openipc.org/cameras/Vendors/ingenic/socs/t31n)
 Fill the required fields and indicate your MAC address. Like this:
@@ -246,3 +248,5 @@ In the resulting input field, command
 firstboot
 ```
 **Congratulations on successfully installing OpenIPC!**
+_____
+## Tune-up
