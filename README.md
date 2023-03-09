@@ -195,7 +195,7 @@ ________________
 ### OpenIPC install
 
 Now that we have a bootloader with the right set of commands, we can flash the rest of the firmware.
-Go back to the instruction page we received in [Firmware generation](https://github.com/OpenIPC/device-mjsxj03hl/edit/master/README_ru.md#firmware-generation)
+Go back to the instruction page we received in [Firmware generation](https://github.com/OpenIPC/device-mjsxj03hl#firmware-generation)
 Next in the section **Flash OpenIPC Linux kernel and root filesystem**. Download the archive from the link _Download OpenIPC Firmware (Ultimate) bundle_
 You will find 4 files in it: the root FS image and the kernel, as well as checksums for them. Unzip them to your memory card and place it in the camera slot.
 
