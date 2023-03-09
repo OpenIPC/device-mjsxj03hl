@@ -190,3 +190,58 @@ sf write ${baseaddr} 0x0 ${filesize}
 If everything went well, then you now have a new bootloader from OpenIPC that supports all the necessary commands.
 Command `reset` in the bootloader console, the camera will reboot. Camera loading can now be interrupted by pressing `Ctrl+C`
 ________________
+### Установка OpenIPC
+
+Теперь, когда у нас есть загрузчик с нужным набором команд, мы можем прошить остальную часть прошивки.
+Вернитесь на страницу с инструкциями, которую мы получили в пункте [Генерация прошивки](https://github.com/OpenIPC/device-mjsxj03hl/edit/master/README_ru.md#%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%BF%D1%80%D0%BE%D1%88%D0%B8%D0%B2%D0%BA%D0%B8)
+Далее в разделе **Flash OpenIPC Linux kernel and root filesystem** Загрузите архив по ссылке _Download OpenIPC Firmware (Ultimate) bundle_
+В нем вы найдете 4 файла: образ корневой ФС и ядро, а также контрольные суммы к ним. Разархивируйте их на вашу карту памяти и поместите ее в слот камеры.
+
+Далеее:
+1) Подключаем UART, запускаем терминал!
+2) Подаем питание на камеру и быстро останавливаем загрузку нажатием `Ctrl+C`. Попадаем в консоль загрузчика
+3) Проверяем доступ к карте памяти 
+```
+mmc rescan
+```
+4)Вводим переменные окружения и сохраняем их:
+```
+setenv baseaddr 0x80600000
+setenv flashsize 0x1000000
+saveenv
+```
+5) Переназначаем разделы ПЗУ в соответствии с размером и типом флэш-памяти.
+```
+run setnor16m
+```
+6) Прошиваем ядро (Команды вводятся построчно!)
+```
+mw.b ${baseaddr} 0xff 0x200000
+sf probe 0
+sf erase 0x50000 0x300000
+fatload mmc 0:1 ${baseaddr} uimage.${soc}
+sf write ${baseaddr} 0x50000 ${filesize}
+```
+7) Прошиваем корневую файловую систему (Команды вводятся построчно!)
+```
+mw.b ${baseaddr} 0xff 0x500000
+sf probe 0
+sf erase 0x350000 0xa00000
+fatload mmc 0:1 ${baseaddr} rootfs.squashfs.${soc}
+sf write ${baseaddr} 0x350000 ${filesize}
+```
+8) Скомандуем `reset` и камера перезагрузится с новой прошивкой. 
+
+Если вы все сделали верно, в окне терминала появится:
+```
+Welcome to OpenIPC
+openipc-t31 login: 
+```
+Введите логин `root` , вход без пароля
+![изображение](https://user-images.githubusercontent.com/88727968/223940074-c9f63e1a-b19c-4905-a7fb-66faca1aca52.png)
+
+В полученном поле для ввода скомандуйте 
+```
+firstboot
+```
+**Поздравляем с успешной установкой OpenIPC!**
