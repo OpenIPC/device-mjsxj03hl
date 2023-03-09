@@ -723,6 +723,7 @@ openipc-t31 login:
 ```
 Введите логин `root` , вход без пароля
 ![изображение](https://user-images.githubusercontent.com/88727968/223940074-c9f63e1a-b19c-4905-a7fb-66faca1aca52.png)
+
 В полученном поле для ввода скомандуйте 
 ```
 firstboot
