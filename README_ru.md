@@ -254,8 +254,14 @@ ______________
 
 Предварительная настройка камеры MJSXJ03HL отличается от настройки большинства камер. В данный момент камера не может подключиться к интернету и использовать SSH мы не можем. Также не можем использовать WEB-интерфейс. Поэтому все команды пока будут выполняться в терминальном доступе к камере. Синтаксис команд в этом случае не отличается.
 
- Итак, подключите вашу камеру к компьютеру через UART, войдите в терминал и подайте питание на камеру. ЗАГРУЗКУ НЕ ПРЕРЫВАЕМ! 
- Получаем лог загрузки. В нем возможны такие строчки:
+Итак, подключите вашу камеру к компьютеру через UART, войдите в терминал и подайте питание на камеру. ЗАГРУЗКУ НЕ ПРЕРЫВАЕМ! 
+
+Для начала настройти переменные среды, как написано в [руководстве](https://github.com/OpenIPC/wiki/blob/master/ru/configuration.md#%D0%BD%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%B9%D0%BA%D0%B0-%D1%81%D1%80%D0%B5%D0%B4%D1%8B)
+
+#### Подгрузка драйвера
+
+
+ Обратите внимание на лог загрузки. В нем возможны такие строчки:
  ```
  Starting network: ip: SIOCGIFINDEX: No such device
 insmod: can't insert '/lib/modules/rtl8189ftv.ko': No such file or directory
@@ -264,3 +270,78 @@ FAIL
 В таком случае нам необходимо вручную добавить драйвер для беспроводного модуля.
 Драйвер, с которым у меня удалось настроить сеть можно загрузить по [ссылке](https://github.com/OpenIPC/device-mjsxj03hl/raw/master/flash/autoconfig/lib/modules/rtl8189ftv.ko)
 
+Скопируйте драйвер на SD карту, поместите ее в память камеры, подключите UART, терминал, подайте напряжение. Войдите в консоль камеры (не U-Boot!)
+Авторизуйтесь и введите следующие команды:
+1. Идем на флешку
+```
+cd /mnt/mmcblk0p1
+``` 
+2. Убеждаемся что файл присутствует
+```
+ls -l
+```
+3. Копируем
+```
+cp rtl8189ftv.ko /lib/modules/
+```
+Пока нет смысла перезагружать и проверять работу сети, переходим к следующему этапу 
+#### Конфигурация сети
+Сетевая конфигурация у нас расположена в файле /etc/network/interfaces.d
+К сожалению, из текстовых редакторов доступен только `vi` Рекомендую предварительно ознакомиться с нюансами работы данного редактора.
+
+Скомандуем 
+``` 
+vi /etc/network/interfaces.d
+```
+И приведем его содержимое к виду: *
+
+```
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+    address 192.168.1.99
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    hwaddress ether $(fw_printenv -n ethaddr || echo XX:XX:XX:XX:XX:XX)
+    pre-up echo -e "nameserver 77.88.8.8\nnameserver 8.8.4.4\n" >/tmp/resolv.conf
+    pre-up echo -e "server 0.time.openipc.org iburst\nserver 1.time.openipc.org iburst\nserver 2.time.openipc.org iburst\nserver 3.ti
+
+auto wlan0
+iface wlan0 inet dhcp
+    pre-up modprobe mac80211
+    pre-up insmod /lib/modules/rtl8189ftv.ko
+    pre-up wpa_passphrase "SSID" "PASSWORD" >/tmp/wpa_supplicant.conf
+    pre-up sed -i '2i \\tscan_ssid=1' /tmp/wpa_supplicant.conf
+    pre-up sleep 1
+    pre-up wpa_supplicant -B -D nl80211 -i wlan0 -c/tmp/wpa_supplicant.conf
+    post-down killall -q wpa_supplicant
+
+#source-dir /etc/network/interfaces.d
+```
+_* ВНИМАНИЕ! Я испоользую статическую маршрутизацию. Вы можете оставить этот (первый) блок стандартным. `SSID` и `PASSWORD` - ваши для подключения к роутеру. Также не забудьте указать MAC адрес вашей камеры_
+
+Сохраните изменения (убедитесь что вы все сделали верно) и перезагрузите камеру. Сеть должна появиться. Войдите в веб-интерфейс и выполните настройки, как описано в [статье](https://github.com/OpenIPC/wiki/blob/master/ru/configuration.md#%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF-%D0%B2-%D0%B2%D0%B5%D0%B1-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81).
+
+#### Чиним Majestic Streamer
+
+Войдите в консолькамеры по SSH или через UART. О том, как использовать SSH написано [здесь](https://github.com/OpenIPC/wiki/blob/master/ru/configuration.md#%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF-%D0%B2-%D1%88%D0%B5%D0%BB%D0%BB)
+
+Для начала отключим HLS
+```
+cli -s .hls.enabled false; reboot
+```
+Камера перезагрузится. Снова попадаем в консоль и вводим одной командой:
+```
+fw_setenv bootargs 'mem=34M@0x0 rmem=30M@0x2200000 console=ttyS1,115200n8 panic=20 root=/dev/mtdblock3 rootfstype=squashfs init=/init mtdparts=jz_sfc:256k(boot),64k(env),3072k(kernel),10240k(rootfs),-(rootfs_data) nogmac'
+```
+И затем перезагружаем: `reboot`
+Теперь видео должно заработать.
+
+#### Прописываем путь к накопителю
+В веб-интерфейсе выбираем Majestic --> Recording и прописываем туда путь к вашей карте, то есть в нашем случае приводим поле к виду:
+```
+/mnt/mmcblk0p1/%Y/%m/%d/%H.mp4
+```
+Перезагружаем и убеждаемся, что камера записывает видео на карту памяти.
