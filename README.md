@@ -344,3 +344,7 @@ In the web interface, select Majestic --> Recording and write the path to the st
 /mnt/mmcblk0p1/%Y/%m/%d/%H.mp4
 ```
 Reboot and make sure that the camera is recording video to the memory card.
+
+#### Night mode
+Set up night mode as shown in the screenshot. Pay attention to the field values!
+![photo_2023-03-12_21-16-53](https://user-images.githubusercontent.com/88727968/224554161-4f69f333-c3ef-4ed0-8f04-5c504bec5009.jpg)
