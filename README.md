@@ -256,7 +256,7 @@ The MJSXJ03HL camera setup is different from most cameras. At this moment, the c
 
 So, connect your camera to your computer via UART, enter the terminal and power up the camera. DO NOT INTERRUPT BOOT! Login to camera console (not Uboot console!)
 
-#### Подгрузка драйвера
+#### Driver loading
 
 Pay attention to the boot log. It contains the following lines:
 ```
