@@ -348,3 +348,8 @@ Reboot and make sure that the camera is recording video to the memory card.
 #### Night mode
 Set up night mode as shown in the screenshot. Pay attention to the field values!
 ![photo_2023-03-12_21-16-53](https://user-images.githubusercontent.com/88727968/224554161-4f69f333-c3ef-4ed0-8f04-5c504bec5009.jpg)
+
+### Finality
+Now you can control the camera via SSH and Web interface. Carefully disconnect the wires from the board. Assemble the camera. Remember, the camera is easy to assemble, do not use force. Be careful not to damage your camera.
+
+**Success in use OpenIPC!**
