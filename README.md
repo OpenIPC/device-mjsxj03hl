@@ -290,7 +290,7 @@ Unfortunately, only `vi` is available from text editors. I recommend that you fi
 
 Give a command:
 ``` 
-vi /etc/network/interfaces.d
+vi /etc/network/interfaces
 ```
 And let's correct its contents to the form: *
 
