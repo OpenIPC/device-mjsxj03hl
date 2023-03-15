@@ -153,6 +153,7 @@ _______
 ## Flashing
 
 ### Firmware generation
+**HOTFIX! Lite version recommended!!!!**
 To obtain firmware and instructions, use [Automatic generator Instruction for our processor](https://openipc.org/cameras/Vendors/ingenic/socs/t31n)
 Fill the required fields and indicate your MAC address. Like this:
 ![Image](https://user-images.githubusercontent.com/88727968/223147951-c72fdd86-eaf8-415e-b17e-82026739aa96.png)
