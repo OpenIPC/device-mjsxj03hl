@@ -288,7 +288,7 @@ cp rtl8189ftv.ko /lib/modules/
 
 Скомандуем 
 ``` 
-vi /etc/network/interfaces.d
+vi /etc/network/interfaces
 ```
 И приведем его содержимое к виду: *
 
