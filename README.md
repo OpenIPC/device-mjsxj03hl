@@ -97,7 +97,7 @@ ____________
 
 ### Get access to the bootloader
 Unfortunately, the MJSXJ03HL camera does not support boot interruption by sending a key combination. For this reason, boot interrupting and gaining access to the downloader console will be done by us manually. To do this, it will be necessary to close some contacts of the [memory chip](https://github.com/OpenIPC/device-mjsxj03hl#memory-chip).
-For how to do this, read [here](https://wiki.openipc.org/en/faq.html#how-to-get-into-bootloader-shell).
+For how to do this, read [here](https://github.com/OpenIPC/wiki/blob/master/en/help-uboot.md#shorting-pins-on-flash-chip).
 Carefully study the above manual, find the memory chip and the necessary contacts, prepare what you will close the contacts with. All manipulations will have to be done quickly enough.
 ATTENTION!!! You take full responsibility for your actions!
 The following is the sequence of actions to gain access to the bootloader console:
@@ -109,7 +109,7 @@ The following is the sequence of actions to gain access to the bootloader consol
 6. The download log should appear in the terminal window
 7. Close the contacts of the memory chip (This must be done 0.5-1 sec after power is applied)
 8. The download should abort. Contacts can be opened.
-9. If you did everything correctly, the U-boot console will appear on the screen with a `#` symbol and the ability to enter.
+9. If you did everything correctly, the U-boot console will appear on the screen with a `>` symbol and the ability to enter.
 10. Type `help` to list the commands present in the bootloader
 
 Unfortunately, the manufacturer for this camera greatly limited the capabilities of U-boot, this will create a series of obstacles for us in the future until we flash U-boot from OpenIPC. But first we need to save the stock firmware of the camera.
@@ -121,7 +121,7 @@ We will need:
 - Camera disassembled with connected UART
 - Computer
 - SD card with a capacity of at least 16 MB
-It is first recommended to familiarize yourself with [the original article](https://wiki.openipc.org/en/help-uboot.html#saving-firmware-via-sd-card)
+It is first recommended to familiarize yourself with [the original article](https://github.com/OpenIPC/wiki/blob/master/en/help-uboot.md#saving-firmware-via-sd-card)
 
 ATTENTION! During the following manipulations, all information from the SD card will be inaccessible, and the card itself cannot be used before formatting! All data, located on the map will be irrevocably lost!
 
