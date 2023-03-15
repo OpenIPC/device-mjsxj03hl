@@ -16,7 +16,7 @@ We will need:
 
 ![изображение](https://user-images.githubusercontent.com/88727968/222174358-5203eb83-14ce-4f55-89bd-24775af82599.png)
 
-All steps will be shown on Linux OS, if your OS is different, please refer to specific UART setup [instructions on your OS.](https://wiki.openipc.org/en/installation.html#step-3-connect-to-uart-port-of-your-camera)
+All steps will be shown on Linux OS, if your OS is different, please refer to specific UART setup [instructions on your OS.](https://github.com/OpenIPC/wiki/blob/master/en/installation.md#step-3-connect-to-uart-port-of-your-camera)
 
 Operating procedure:
 1) Take a close look at the UART adapter. Find pins `GND`,`TX`,`RX`. If your adapter supports the function of selecting the operating voltage, make sure that it is set to 3.3V!
