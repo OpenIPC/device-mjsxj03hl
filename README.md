@@ -259,13 +259,8 @@ So, connect your camera to your computer via UART, enter the terminal and power 
 
 #### Driver loading
 
-Pay attention to the boot log. It contains the following lines:
-```
- Starting network: ip: SIOCGIFINDEX: No such device
-insmod: can't insert '/lib/modules/rtl8189ftv.ko': No such file or directory
-FAIL
-```
-In this case, we need to manually add the driver for the wireless module.
+First of all, you need to manually add the driver for the wireless module.
+
 The driver with which I was able to configure the network can be downloaded from [link](https://github.com/OpenIPC/device-mjsxj03hl/raw/master/flash/autoconfig/lib/modules/rtl8189ftv.ko)
 
 Copy the driver to the SD card, put it in the camera's memory, connect the UART, terminal, power on. Login to camera console (not U-Boot!)
@@ -286,7 +281,7 @@ For now, there is no point in rebooting and checking the network. Go to the next
 
 #### Network configuration
 
-The network configuration is located in the file /etc/network/interfaces.d
+The network configuration is located in the file /etc/network/interfaces
 Unfortunately, only `vi` is available from text editors. I recommend that you first familiarize yourself with the nuances of this editor.
 
 Give a command:
