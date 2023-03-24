@@ -319,6 +319,8 @@ _* ATTENTION! I'm using static routing. You can leave this (first) block as defa
 
 Save your changes (make sure you did everything right) and reboot your camera. The network should appear. Log in to the web interface and complete other settings, like admin password, ssh, tome zone a.o.
 
+In addition, in the web interface, enter the _Majestic --> ISP_ section and set the **Block count** parameter to **1**
+
 #### Fix Majestic Streamer
 
 Login to the camera console via SSH or via UART. How to use SSH is written [here](https://github.com/OpenIPC/wiki/blob/master/en/faq.md#how-to-sign-in-into-camera-via-ssh)
