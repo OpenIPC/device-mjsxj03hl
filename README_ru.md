@@ -1,4 +1,4 @@
-# OpenIPC для Xiaomi MJSXJ03HL (В РАЗРАБОТКЕ!!!) 
+# OpenIPC для Xiaomi MJSXJ03HL 
 ![Изображение](https://user-images.githubusercontent.com/88727968/222164240-66044bf1-16da-4ea2-af38-6fd3d3fb1b92.png)
 
 
