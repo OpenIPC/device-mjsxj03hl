@@ -153,10 +153,13 @@ _______
 ## Flashing
 
 ### Firmware generation
-**HOTFIX! Lite version recommended!!!!**
+**NOTE:  !Lite version recommended!**
+
 To obtain firmware and instructions, use [Automatic generator Instruction for our processor](https://openipc.org/cameras/Vendors/ingenic/socs/t31n)
 Fill the required fields and indicate your MAC address. Like this:
-![Image](https://user-images.githubusercontent.com/88727968/223147951-c72fdd86-eaf8-415e-b17e-82026739aa96.png)
+
+![изображение](https://user-images.githubusercontent.com/88727968/230729760-51c0cfb2-8fc8-4505-973f-53adf53fda32.png)
+
 Generate the firmware. Carefully study the page with firmware and instructions.
 Unfortunately, the manufacturer did not add a TFTP program to the factory bootloader, therefore we will flash our firmware in parts and manually.
 Go to the section **Alternatively, flash OpenIPC Firmware by its parts** and download the bootloader's binary file to the link. You should get a binary file **u-boot-t31n-universal.bin**. Do not close the page with the instructions. We will need it later.
