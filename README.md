@@ -13,4 +13,5 @@ _______________
 [Руководство по установке и настройке OpenIPC](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/Manual_ru.md)
 
 [Установка OnepIPC на Xiaomi MJSXJ03HL через Cloner (Windows)](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/usb-cloner-manual-mjsxj03hl.md)
+
 [Откат на заводскую прошивку Xiaomi MJSXJ03HL через UART ymodem (Windows)](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/stock-firmware-via-uart.md)
