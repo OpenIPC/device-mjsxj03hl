@@ -291,20 +291,11 @@ Give a command:
 ``` 
 vi /etc/network/interfaces
 ```
-And let's correct its contents to the form: *
+And let's correct its contents to the form:
 
 ```
 auto lo
 iface lo inet loopback
-
-auto eth0
-iface eth0 inet static
-    address 192.168.1.99
-    netmask 255.255.255.0
-    gateway 192.168.1.1
-    hwaddress ether $(fw_printenv -n ethaddr || echo XX:XX:XX:XX:XX:XX)
-    pre-up echo -e "nameserver 77.88.8.8\nnameserver 8.8.4.4\n" >/tmp/resolv.conf
-    pre-up echo -e "server 0.time.openipc.org iburst\nserver 1.time.openipc.org iburst\nserver 2.time.openipc.org iburst\nserver 3.ti
 
 auto wlan0
 iface wlan0 inet dhcp
@@ -315,10 +306,10 @@ iface wlan0 inet dhcp
     pre-up sleep 1
     pre-up wpa_supplicant -B -D nl80211 -i wlan0 -c/tmp/wpa_supplicant.conf
     post-down killall -q wpa_supplicant
-
+    
+  
 #source-dir /etc/network/interfaces.d
 ```
-_* ATTENTION! I'm using static routing. You can leave this (first) block as default. `SSID` and `PASSWORD` are yours to connect to the router. Also don't forget to include the MAC address of your camera_
 
 Save your changes (make sure you did everything right) and reboot your camera. The network should appear. Log in to the web interface and complete other settings, like admin password, ssh, tome zone a.o.
 
