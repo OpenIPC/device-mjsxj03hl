@@ -288,20 +288,11 @@ cp rtl8189ftv.ko /lib/modules/
 ``` 
 vi /etc/network/interfaces
 ```
-И приведем его содержимое к виду: *
+И приведем его содержимое к виду:
 
 ```
 auto lo
 iface lo inet loopback
-
-auto eth0
-iface eth0 inet static
-    address 192.168.1.99
-    netmask 255.255.255.0
-    gateway 192.168.1.1
-    hwaddress ether $(fw_printenv -n ethaddr || echo XX:XX:XX:XX:XX:XX)
-    pre-up echo -e "nameserver 77.88.8.8\nnameserver 8.8.4.4\n" >/tmp/resolv.conf
-    pre-up echo -e "server 0.time.openipc.org iburst\nserver 1.time.openipc.org iburst\nserver 2.time.openipc.org iburst\nserver 3.ti
 
 auto wlan0
 iface wlan0 inet dhcp
@@ -315,7 +306,7 @@ iface wlan0 inet dhcp
 
 #source-dir /etc/network/interfaces.d
 ```
-_* ВНИМАНИЕ! Я использую статическую маршрутизацию. Вы можете оставить этот (первый) блок стандартным. `SSID` и `PASSWORD` - ваши для подключения к роутеру. Также не забудьте указать MAC адрес вашей камеры_
+
 
 Сохраните изменения (убедитесь что вы все сделали верно) и перезагрузите камеру. Сеть должна появиться. Войдите в веб-интерфейс и выполните настройки, как описано в [статье](https://github.com/OpenIPC/wiki/blob/master/ru/configuration.md#%D0%B4%D0%BE%D1%81%D1%82%D1%83%D0%BF-%D0%B2-%D0%B2%D0%B5%D0%B1-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81).
 
