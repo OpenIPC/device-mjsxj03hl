@@ -118,6 +118,9 @@ DECIMAL       HEXADECIMAL     DESCRIPTION
 ### 2.2. Разделы (kernel)
 Ничего особо интересного. Через `mkimage` не распознаётся
 ```shell
+$ mkimage kernel.uimg -l
+GP Header: Size 27051956 LoadAddr 58ab0988
+
 $ binwalk kernel.uimg
 DECIMAL       HEXADECIMAL     DESCRIPTION
 --------------------------------------------------------------------------------
@@ -231,7 +234,7 @@ created 0 devices
 created 0 fifos
 created 0 sockets
 
-$ sed -i 's|^#console::|console::|1' squashfs-root/etc/inittab # редактирование
+$ sed -i 's|^#console::|console::|1' ./squashfs-root/etc/inittab # редактирование
 
 $ mksquashfs squashfs-root ./rootfs.patched.squashfs -comp xz # упаковка
 Parallel mksquashfs: Using 72 processors
@@ -300,9 +303,11 @@ $ # сброс
 $ reset
 ```
 
+>Если после прошивки раздела что то тупит то передёрните полностью питание, если не поможет то ресет к заводским.
+
 После загрузки должно выйти предложение залогиниться, если не видно то нажмите несколько раз ввод. Логин/хэш извлечены из `/etc/passwd` и `/etc/shadows` после гугления найден пароль. Итоговые кредсы `root:ismart12`
 ```
-login: root
+Ingenic-uc1_1 login: root
 Password:
 Apr 27 01:44:07 login[148]: root login on 'console'
 [root@Ingenic-uc1_1:~]# ls
