@@ -15,3 +15,7 @@ _______________
 [Установка OnepIPC на Xiaomi MJSXJ03HL через Cloner (Windows)](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/usb-cloner-manual-mjsxj03hl.md)
 
 [Откат на заводскую прошивку Xiaomi MJSXJ03HL через UART ymodem (Windows)](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/stock-firmware-via-uart.md)
+
+[Информация по разделам стоковой прошивки. "Потрошим" флешку mjsxj03hl](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/FwPatch_.ru.md)
+
+
