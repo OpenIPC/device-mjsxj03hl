@@ -323,7 +323,8 @@ cli -s .isp.blkCnt 1
 ```
 Затем задайте некоторые переменные:
 ```
-fw_setenv bootargs 'mem=34M@0x0 rmem=30M@0x2200000 console=ttyS1,115200n8 panic=20 root=/dev/mtdblock3 rootfstype=squashfs init=/init mtdparts=jz_sfc:256k(boot),64k(env),3072k(kernel),10240k(rootfs),-(rootfs_data) nogmac'
+fw_setenv osmem 39M
+fw_setenv rmem 25M@0x2700000
 ```
 И затем перезагружаем: `reboot`
 Теперь видео должно заработать.
