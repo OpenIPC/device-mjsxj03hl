@@ -300,6 +300,7 @@ iface lo inet loopback
 auto wlan0
 iface wlan0 inet dhcp
     pre-up modprobe mac80211
+    pre-up modprobe cfg80211
     pre-up insmod /lib/modules/rtl8189ftv.ko
     pre-up wpa_passphrase "SSID" "PASSWORD" >/tmp/wpa_supplicant.conf
     pre-up sed -i '2i \\tscan_ssid=1' /tmp/wpa_supplicant.conf
