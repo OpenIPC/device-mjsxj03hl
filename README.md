@@ -18,4 +18,4 @@ _______________
 
 [Информация по разделам стоковой прошивки. "Потрошим" флешку mjsxj03hl](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/FwPatch_.ru.md)
 
-
+[Устаревшая версия мануала по настройке](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/old_setting_up_ru.md)
