@@ -9,6 +9,8 @@ _______________
 ### English
 [OpenIPC instalation and setup manual](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/Manual_en.md)
 
+[Old setup manual](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/old_setting_up_en.md)
+
 ### Russian
 [Руководство по установке и настройке OpenIPC](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/Manual_ru.md)
 
