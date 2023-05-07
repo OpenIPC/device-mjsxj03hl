@@ -262,9 +262,9 @@ We will need:
 - Camera
 
 _ATTENTION!!! After this procedure, all camera settings will be deleted!_
-If this is unacceptable, or you do not have a microSD card - manually configure according to the [outdated version of the manual] (https://github.com/OpenIPC/device-mjsxj03hl/blob/master/old_setting_up_en.md)
+If this is unacceptable, or you do not have a microSD card - manually configure according to the [outdated version of the manual](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/old_setting_up_en.md)
 
-Download to your computer and extract the contents of the [flash] folder to a memory card (https://github.com/OpenIPC/device-mjsxj03hl/tree/master/flash)
+Download to your computer and extract the contents of the [flash](https://github.com/OpenIPC/device-mjsxj03hl/tree/master/flash) folder to a memory card.
 
 The contents of the folder must be unpacked into the root directory, and the directory and file structure must be preserved!
 
