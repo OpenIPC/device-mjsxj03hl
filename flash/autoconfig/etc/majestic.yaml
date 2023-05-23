@@ -21,7 +21,7 @@ nightMode:
   irCutPin2: 50
 records:
   enabled: false
-  path: /mnt/mmc/%Y/%m/%d/%H.mp4
+  path: /mnt/mmcblk0p1/%Y/%m/%d/%H.mp4
   maxUsage: 95
 video0:
   enabled: true
