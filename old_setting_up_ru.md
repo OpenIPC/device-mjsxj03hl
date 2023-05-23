@@ -26,7 +26,7 @@ ls -l
 ```
 3. Копируем
 ```
-cp rtl8189ftv.ko /lib/modules/
+cp rtl8189ftv.ko /lib/modules/3.10.14__isvp_swan_1.0__/extra
 ```
 Пока нет смысла перезагружать и проверять работу сети, переходим к следующему этапу 
 #### Конфигурация сети
@@ -35,26 +35,22 @@ cp rtl8189ftv.ko /lib/modules/
 
 Скомандуем 
 ``` 
-vi /etc/network/interfaces
+vi /etc/network/interfaces.d/wlan0
 ```
 И приведем его содержимое к виду:
 
 ```
-auto lo
-iface lo inet loopback
-
 auto wlan0
 iface wlan0 inet dhcp
     pre-up modprobe mac80211
     pre-up modprobe cfg80211
-    pre-up insmod /lib/modules/rtl8189ftv.ko
+    pre-up insmod /lib/modules/3.10.14__isvp_swan_1.0__/extra/rtl8189ftv.ko
     pre-up wpa_passphrase "SSID" "PASSWORD" >/tmp/wpa_supplicant.conf
     pre-up sed -i '2i \\tscan_ssid=1' /tmp/wpa_supplicant.conf
     pre-up sleep 1
     pre-up wpa_supplicant -B -D nl80211 -i wlan0 -c/tmp/wpa_supplicant.conf
     post-down killall -q wpa_supplicant
 
-#source-dir /etc/network/interfaces.d
 ```
 
 
