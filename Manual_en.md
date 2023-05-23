@@ -268,7 +268,7 @@ Download to your computer and extract the contents of the [flash](https://github
 
 The contents of the folder must be unpacked into the root directory, and the directory and file structure must be preserved!
 
-Edit the **interfaces** file located in the path **~/etc/network** - replace `SSID` and `PASSWORD` with the parameters of your access point.
+Edit the **wlan0** file located in the path **~/autoconfig/etc/network/interfaces.d** - replace `SSID` and `PASSWORD` with the parameters of your access point.
 
 Insert a memory card into the camera, turn on the power. The camera will automatically complete all the presets and reboot.
 
