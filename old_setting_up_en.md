@@ -1,5 +1,7 @@
 ATTENTION!!! THIS IS AN OUTDATED VERSION OF THE SETUP MANUAL!!!
 
+Camera presetting is currently done [via SD card!](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/Manual_en.md#presetting)
+
 ## Tune-up
 ### Presetting
 
