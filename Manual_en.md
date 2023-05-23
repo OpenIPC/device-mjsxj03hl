@@ -256,6 +256,8 @@ _____
 ## Tune-up
 ### Presetting
 
+_ATTENTION! Use a separate SD card for basic settings or delete the contents of the **autoconfig** folder after this step!_
+
 We will need:
 - Computer with card reader
 - Micro SD card
@@ -274,16 +276,7 @@ Insert a memory card into the camera, turn on the power. The camera will automat
 
 After these manipulations, the network should appear. You can log in to the web interface and continue setting up
 
-#### Write the path to the storage
-In the web interface, select Majestic --> Recording and write the path to the storage. Set the field:
-```
-/mnt/mmcblk0p1/%Y/%m/%d/%H.mp4
-```
-Reboot and make sure that the camera is recording video to the memory card.
-
-#### Night mode
-Set up night mode as shown in the screenshot. Pay attention to the field values!
-![photo_2023-03-12_21-16-53](https://user-images.githubusercontent.com/88727968/224554161-4f69f333-c3ef-4ed0-8f04-5c504bec5009.jpg)
+**ATTENTION! Don't forget to remove the memory card and delete the _autoconfig_ folder or replace the memory card!**
 
 ### Finality
 Now you can control the camera via SSH and Web interface. Carefully disconnect the wires from the board. Assemble the camera. Remember, the camera is easy to assemble, do not use force. Be careful not to damage your camera.
