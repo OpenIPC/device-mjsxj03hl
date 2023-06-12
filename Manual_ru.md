@@ -217,7 +217,7 @@ setenv baseaddr 0x80600000
 setenv flashsize 0x1000000
 saveenv
 ```
-5) Переназначаем разделы ПЗУ в соответствии с размером и типом флэш-памяти.
+5) Переназначаем разделы ПЗУ. Несмотря на то, что у нас 16Mb памяти, использование такой разметки в сочетании с Lite версией позволит получить больше свободного пространства.
 ```
 run setnor8m
 ```
@@ -225,21 +225,20 @@ run setnor8m
 
 6) Прошиваем ядро (Команды вводятся построчно!)
 ```
-mw.b ${baseaddr} 0xff 0x200000
-sf probe 0
-sf erase 0x50000 0x300000
-fatload mmc 0:1 ${baseaddr} uimage.${soc}
-sf write ${baseaddr} 0x50000 ${filesize}
+mw.b 0x80600000 0xff 0x200000
+fatload mmc 0:1 0x80600000 uImage.t31n
+sf probe 0; sf lock 0;
+sf erase 0x50000 0x200000; sf write 0x80600000 0x50000 ${filesize}
 ```
 7) Прошиваем корневую файловую систему (Команды вводятся построчно!)
 ```
-mw.b ${baseaddr} 0xff 0x500000
-sf probe 0
-sf erase 0x350000 0xa00000
-fatload mmc 0:1 ${baseaddr} rootfs.squashfs.${soc}
-sf write ${baseaddr} 0x350000 ${filesize}
+mw.b 0x80600000 0xff 0x500000
+fatload mmc 0:1 0x80600000 rootfs.squashfs.t31n
+sf probe 0; sf lock 0;
+sf erase 0x250000 0x500000; sf write 0x80600000 0x250000 ${filesize}
 ```
-8) Скомандуем `reset` и камера перезагрузится с новой прошивкой. 
+
+9) Скомандуем `reset` и камера перезагрузится с новой прошивкой. 
 
 Если вы все сделали верно, в окне терминала появится:
 ```
