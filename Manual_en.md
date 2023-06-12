@@ -153,12 +153,12 @@ _______
 ## Flashing
 
 ### Firmware generation
-**NOTE:  !Lite version recommended!**
+**NOTE:  !Lite version recommended!** All the following manipulations are described for the Lite version
 
 To obtain firmware and instructions, use [Automatic generator Instruction for our processor](https://openipc.org/cameras/Vendors/ingenic/socs/t31n)
 Fill the required fields and indicate your MAC address. Like this:
 
-![изображение](https://user-images.githubusercontent.com/88727968/230729760-51c0cfb2-8fc8-4505-973f-53adf53fda32.png)
+![изображение](https://github.com/OpenIPC/device-mjsxj03hl/assets/88727968/e5b8e124-02bb-427e-a2c4-16b16575fce7)
 
 Generate the firmware. Carefully study the page with firmware and instructions.
 Unfortunately, the manufacturer did not add a TFTP program to the factory bootloader, therefore we will flash our firmware in parts and manually.
@@ -216,25 +216,23 @@ setenv baseaddr 0x80600000
 setenv flashsize 0x1000000
 saveenv
 ```
-5) Reassign ROM partitions according to the size and type of flash memory
+5) Reassign ROM partitions according to the size and type of flash memory. Despite the fact that we have 16Mb of memory, using this layout in combination with the Lite version will allow us to get more free space.
 ```
-run setnor16m
+run setnor8m
 ```
 6) Flash boot (Commands are entered line by line!)
 ```
-mw.b ${baseaddr} 0xff 0x200000
-sf probe 0
-sf erase 0x50000 0x300000
-fatload mmc 0:1 ${baseaddr} uimage.${soc}
-sf write ${baseaddr} 0x50000 ${filesize}
+mw.b 0x80600000 0xff 0x200000
+fatload mmc 0:1 0x80600000 uImage.t31n
+sf probe 0; sf lock 0;
+sf erase 0x50000 0x200000; sf write 0x80600000 0x50000 ${filesize}
 ```
 7) Flash rootfs (Commands are entered line by line!)
 ```
-mw.b ${baseaddr} 0xff 0x500000
-sf probe 0
-sf erase 0x350000 0xa00000
-fatload mmc 0:1 ${baseaddr} rootfs.squashfs.${soc}
-sf write ${baseaddr} 0x350000 ${filesize}
+mw.b 0x80600000 0xff 0x500000
+fatload mmc 0:1 0x80600000 rootfs.squashfs.t31n
+sf probe 0; sf lock 0;
+sf erase 0x250000 0x500000; sf write 0x80600000 0x250000 ${filesize}
 ```
 8) We command `reset` and the camera reboots with the new firmware.
 
