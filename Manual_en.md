@@ -152,6 +152,9 @@ _______
 
 ## Flashing
 
+# STOP! IF YOU CONTINUE HERE YOU MAY BRICK YOUR CAMERA!
+> ATTENTION! Some people have reported problems with the installation method described below! Until all issues are resolved and the repo is updated, please use the installation method from <https://github.com/themactep/device-mjsxj03hl>.
+
 ### Firmware generation
 **NOTE:  !Lite version recommended!** All the following manipulations are described for the Lite version
 
