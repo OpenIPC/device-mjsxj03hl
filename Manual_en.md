@@ -271,13 +271,22 @@ Download to your computer and extract the contents of the [flash](https://github
 
 The contents of the folder must be unpacked into the root directory, and the directory and file structure must be preserved!
 
-Edit the **wlan0** file located in the path **~/autoconfig/etc/network/interfaces.d** - replace `SSID` and `PASSWORD` with the parameters of your access point.
-
 Insert a memory card into the camera, turn on the power. The camera will automatically complete all the presets and reboot.
 
-After these manipulations, the network should appear. You can log in to the web interface and continue setting up
-
 **ATTENTION! Don't forget to remove the memory card and delete the _autoconfig_ folder or replace the memory card!**
+
+### Specifying the access point and password information
+For the camera to connect to Wi-Fi, you must enter the following variables in the console:
+
+(variables are entered line by line)
+```
+fw_setenv wlandev rtl8188eu-hi3518ev200-qvc-ipc-136w
+fw_setenv wlanssid AP_NAME
+fw_setenv wlanpass PASSWORD
+```
+Reboot the camera, for example with the `reboot` command
+
+After these manipulations, the network should appear. You can log in to the web interface and continue setting up
 
 ### Finality
 Now you can control the camera via SSH and Web interface. Carefully disconnect the wires from the board. Assemble the camera. Remember, the camera is easy to assemble, do not use force. Be careful not to damage your camera.
