@@ -3,6 +3,8 @@
 
 ![Изображение](https://user-images.githubusercontent.com/88727968/222164240-66044bf1-16da-4ea2-af38-6fd3d3fb1b92.png)
 
+## Warning! This version of the manual is outdated and is being revised. Performing actions may damage your device!
+
 Attention! Any changes you make will void your warranty for this device! The author is not responsible for any damage resulting from any actions of the user!
 _______________
 ## Preparation
