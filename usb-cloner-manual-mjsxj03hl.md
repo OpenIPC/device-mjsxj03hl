@@ -5,7 +5,9 @@
 
 ![image](images/camera.png)
 _________
-Это дополнение к оригинальному [мануалу](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/README_ru.md). Там описаны все подготовительные действия, такие как разборка камеры, подключение камеры по UART, создание резервной копии. Обязательно их выполните.
+Это дополнение к оригинальному [мануалу](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/README_ru.md).
+Там описаны все подготовительные действия, такие как разборка камеры, подключение камеры по UART, создание резервной копии.
+Обязательно их выполните.
 
 Я же покажу, как установить OnenIPC для Xiaomi  MI Camera 2K (mjsxj03hl) одной кнопкой через Cloner в ОС Windows
 
@@ -19,11 +21,10 @@ _____
 
 - [ExtraPuTTY](https://sourceforge.net/projects/extraputty/files/) - модифицированное приложение терминала с возможностью передачи файлов
 
-- [Cloner](ftp://ftp.ingenic.com.cn/DevSupport/Tools/USBBurner)  Последняя версия в архиве для Windows. Ссылка FTP: ftp://ftp.ingenic.com.cn/DevSupport/Tools/USBBurner
+- [Cloner](https://openipc.org/utilities) с сайта OpenIPC или по FTP с официального ресурса от Ingenic - http://ftp.ingenic.com.cn/DevSupport/Tools/USBBurner
 
 - Data кабель USB type-c (с поддержкой передачи файлов)
 
-Так как скорость скачивания с ftp ingenic ещё медленнее, чем передача файла по UART, дублирую необходимый софт на [Yandex Disk](https://disk.yandex.ru/d/BJ-_Lq1zE5DeZw)
 _________
 ### Готовимся к прошивке и затираем бут (ломаем камеру)
 
