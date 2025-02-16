@@ -297,3 +297,13 @@ fw_setenv wlanpass ПАРОЛЬ
 Теперь вы можете управлять камерой через SSH и Web-интерфейс. Аккуратно отсоедините провода от платы. Выполниите сборку камеры. Помните, камера собирается легко, не стоит прикладывать силу. Будьте внимательны и не повредите вашу камеру.
 
 **Успехов в использовании OpenIPC!**
+
+
+### 2025.02.16
+
+Пользователь [11 11](https://t.me/lomanosov1147) прислал заметку для фикса проблемы с SD картой по некоторым ревизиям.
+
+```
+fw_setenv bootcmd 'gpio clear 54; sleep 5; gpio clear 54; mmc rescan; sf probe 0; setenv setargs setenv bootargs ${bootargs}; run setargs; sf read ${baseaddr} ${kernaddr} ${kernsize}; bootm ${baseaddr}'
+```
+
