@@ -152,28 +152,18 @@ dd bs=512 skip=16 count=32768 if=/dev/sdc of=./fulldump.bin
 _Attention! The mounting point of `sdc` may differ (sda, sdb), depending on the connected equipment of your computer ._
 _______
 
-## Flashing
+## Flashing (fixed)
 
-# STOP! IF YOU CONTINUE HERE YOU MAY BRICK YOUR CAMERA!
-> ATTENTION! Some people have reported problems with the installation method described below! Until all issues are resolved and the repo is updated, please use the installation method from <https://github.com/themactep/device-mjsxj03hl>.
+First, download the bootloader binary file from [link](https://github.com/OpenIPC/firmware/releases/download/latest/u-boot-t31n-nor.bin). You should get a binary file **u-boot-t31n-nor.bin**.
 
-### Firmware generation
-**NOTE:  !Lite version recommended!** All the following manipulations are described for the Lite version
+Put the file on your SD card.
 
-To obtain firmware and instructions, use [Automatic generator Instruction for our processor](https://openipc.org/cameras/Vendors/ingenic/socs/t31n)
-Fill the required fields and indicate your MAC address. Like this:
+**ATTENTION!** _If you are using the same memory card as in the previous paragraph, pre-format it in the Fat32 file system with the MBR table (MS-DOS). Do not use the GPT table! If you are using Windows OS - this is the most common formatting. Just connect the memory card and Windows itself will offer to format it._
+_________________
 
-![изображение](https://github.com/OpenIPC/device-mjsxj03hl/assets/88727968/e5b8e124-02bb-427e-a2c4-16b16575fce7)
-
-Generate the firmware. Carefully study the page with firmware and instructions.
-Unfortunately, the manufacturer did not add a TFTP program to the factory bootloader, therefore we will flash our firmware in parts and manually.
-Go to the section **Alternatively, flash OpenIPC Firmware by its parts** and download the bootloader's binary file to the link. You should get a binary file **u-boot-t31n-universal.bin**. Do not close the page with the instructions. We will need it later.
-
-Place the resulting file on your SD card. **Attention!** If you use the same memory card as in the last paragraph, format it in MBR (MS-DOS). Do not use GPT! If you use Windows OS, this is the most common formatting. Just connect the memory card and Windiows yourself will offer it to format it.
-
-### UBoot flashing
-So, we have our camera connected to the UART, in the slot of which a memory card is inserted, formatted in Fat32 with a bootloader binary file on it.
-Just in case, let's do
+### Bootloader flashing (UBoot) (fixed)
+So, we have our camera connected to UART, with a memory card formatted in Fat32 with a binary bootloader file on it inserted into the slot.
+Just in case, let's run
 ```
 mmc rescan
 ```
@@ -181,80 +171,65 @@ and additionally check that you did everything correctly
 ```
 fatls mmc 0:1
 ```
-Your memory card data should come out. If any errors come up, do not continue until they are fixed! Otherwise, flashing the camera will be possible only on special equipment.
+Your memory card data should shown. If any errors come out, do not continue until they are fixed! Otherwise, flashing the camera will only be possible on special equipment.
 
-At the beginning, we will enter the environment variables with the `setenv` command
+First, enter the environment variables with the command `setenv`
 ```
 setenv baseaddr 0x80600000
 setenv flashsize 0x1000000
 ```
-The factory bootloader does not support saving variables, so if the camera was rebooted, you will have to enter it again.
+_The factory bootloader does not support saving variables, so if the camera was rebooted, you will have to enter them again._
 
-Now we proceed to the most crucial moment - U-Boot flashing. Insert commands line by line! Be careful that the commands do not return errors! Do not continue if something goes wrong, do not try to restart the camera, ask for help in our [Telegram channel](https://t.me/openipc)
+Now we proceed to the most important moment - U-Boot flashing. Insert the commands line by line! Be careful that the commands do not return errors! Do not continue, if something goes wrong, do not try to reboot the camera, ask for help in our [Telegram channel](https://t.me/openipc)
 ```
 mw.b ${baseaddr} 0xff 0x50000
 sf probe 0
 sf erase 0x0 0x50000
-fatload mmc 0:1 ${baseaddr} u-boot-t31n-universal.bin
+fatload mmc 0:1 ${baseaddr} u-boot-t31n-nor.bin
 sf write ${baseaddr} 0x0 ${filesize}
 ```
 If everything went well, then you now have a new bootloader from OpenIPC that supports all the necessary commands.
-Command `reset` in the bootloader console, the camera will reboot. Camera loading can now be interrupted by pressing `Ctrl+C`
+Command `reset` in the bootloader console, the camera will reboot. Now you can interrupt the camera boot by pressing Enter
 ________________
-### OpenIPC install
 
-Now that we have a bootloader with the right set of commands, we can flash the rest of the firmware.
-Go back to the instruction page we received in [Firmware generation](https://github.com/OpenIPC/device-mjsxj03hl#firmware-generation)
-Next in the section **Flash OpenIPC Linux kernel and root filesystem**. Download the archive from the link _Download OpenIPC Firmware (Ultimate) bundle_
-You will find 4 files in it: the root FS image and the kernel, as well as checksums for them. Unzip them to your memory card and place it in the camera slot.
+### Installing OpenIPC
+
+Now that we have a bootloader with the right set of commands, we can flash another part of the firmware.
+
+In the folder [https://github.com/OpenIPC/builder/releases](https://github.com/OpenIPC/builder/releases) you will find the latest OpenIPC releases for your device.
+
+![изображение](https://github.com/user-attachments/assets/05c63b5b-ec31-42dc-834c-59c49d3f4f9e)
+
+You will need the **t31_lite_xiaomi-mjsxj03hl-jxq03-nor.tgz** archive.
+_Note that different cameras of the same model may come with different sensors. If your camera has a sensor other than jxq03, please download **t31_lite_xiaomi-mjsxj03hl-nor.tgz**_.
+
+In the archive you will find 4 files: the root FS image and the kernel, as well as checksums for them. Unzip them to your memory card. Add the [script](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/boot.scr) file to the same place. Place the memory card with the files in the camera slot. Connect the UART, run the terminal program, and apply power to the camera. You will be able to see your camera flashing automatically.
+
+![изображение](https://github.com/user-attachments/assets/355d9bb1-4dd3-4b5b-855b-7f6bee264e99)
 
 Next:
-1) Connect the UART, launch the terminal
-2) We supply power to the camera and quickly stop the download by pressing `Ctrl+C`. Get into the bootloader console
-3) Checking access to the memory card
-```
-mmc rescan
-```
-4) Enter environment variables and save them:
-```
-setenv baseaddr 0x80600000
-setenv flashsize 0x1000000
-saveenv
-```
-5) Reassign ROM partitions according to the size and type of flash memory. Despite the fact that we have 16Mb of memory, using this layout in combination with the Lite version will allow us to get more free space.
-```
-run setnor8m
-```
-6) Flash boot (Commands are entered line by line!)
-```
-mw.b 0x80600000 0xff 0x200000
-fatload mmc 0:1 0x80600000 uImage.t31n
-sf probe 0; sf lock 0;
-sf erase 0x50000 0x200000; sf write 0x80600000 0x50000 ${filesize}
-```
-7) Flash rootfs (Commands are entered line by line!)
-```
-mw.b 0x80600000 0xff 0x500000
-fatload mmc 0:1 0x80600000 rootfs.squashfs.t31n
-sf probe 0; sf lock 0;
-sf erase 0x250000 0x500000; sf write 0x80600000 0x250000 ${filesize}
-```
-8) We command `reset` and the camera reboots with the new firmware.
+1) Turn off the power
+2) Remove the memory card. The script and firmware files should be deleted from the card.
+3) Turn on the power. The camera will automatically perform all necessary operations and load the OS. 
 
-If you did everything right, the following will appear in the terminal window:
+
+If you have done everything correctly, the terminal window will show:
 ```
 Welcome to OpenIPC
 openipc-t31 login: 
 ```
-Login as `root` , without password
+Enter login `root` , default password `12345`
 
 ![изображение](https://user-images.githubusercontent.com/88727968/223940074-c9f63e1a-b19c-4905-a7fb-66faca1aca52.png)
 
-In the resulting input field, command
+In the input field, command
 ```
 firstboot
 ```
 **Congratulations on successfully installing OpenIPC!**
+
+Don't forget to delete the firmware files and script from your memory card!
+
 _____
 ## Tune-up
 ### Presetting
