@@ -232,32 +232,12 @@ Don't forget to delete the firmware files and script from your memory card!
 
 _____
 ## Tune-up
-### Presetting
-
-_ATTENTION! Use a separate SD card for basic settings or delete the contents of the **autoconfig** folder after this step!_
-
-We will need:
-- Computer with card reader
-- Micro SD card
-- Camera
-
-_ATTENTION!!! After this procedure, all camera settings will be deleted!_
-If this is unacceptable, or you do not have a microSD card - manually configure according to the [old version of the manual](https://github.com/OpenIPC/device-mjsxj03hl/blob/master/old_setting_up_en.md)
-
-Download to your computer and extract the contents of the [flash](https://github.com/OpenIPC/device-mjsxj03hl/tree/master/flash) folder to a memory card.
-
-The contents of the folder must be unpacked into the root directory, and the directory and file structure must be preserved!
-
-Insert a memory card into the camera, turn on the power. The camera will automatically complete all the presets and reboot.
-
-**ATTENTION! Don't forget to remove the memory card and delete the _autoconfig_ folder or replace the memory card!**
 
 ### Specifying the access point and password information
 For the camera to connect to Wi-Fi, you must enter the following variables in the console:
 
 (variables are entered line by line)
 ```
-fw_setenv wlandev rtl8188eu-hi3518ev200-qvc-ipc-136w
 fw_setenv wlanssid AP_NAME
 fw_setenv wlanpass PASSWORD
 ```
