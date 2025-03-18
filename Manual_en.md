@@ -75,7 +75,7 @@ In our case, it has a numerical-alphabetic marking. Ingenic T31N. The letter N i
 _________
 ### Connecting the camera and UART adapter
 
-In order to connect the UART adapter to the camera board, you need to use the wires with terminals. They can come with a UART adapter. However, they can be replaced with similar ones. Similar connection types are found in a variety of electronics. The second end of the wire to the board should be soldered so that the contact does not disappear at the right time. Be careful when soldering, do not damage the circuit elements and do not short the contacts together!
+In order to connect the UART adapter to the camera board, you need to use the wires with terminals. Be careful when connecting, do not damage the circuit elements and do not short the contacts together!
 
 ![IMG_20210904_1941511](https://user-images.githubusercontent.com/88727968/222906480-dea0a59c-2dab-45e3-96fa-81cf335b745b.jpg)
 
@@ -91,7 +91,7 @@ To get started, familiarize yourself with the program's capabilities and command
 ```picocom --help``` 
 Connect the UART adapter and run the command in the terminal:
 ```
-picocom -b 115200 /dev/ttyUSB0
+sudo picocom -b 115200 /dev/ttyUSB0
 ```
 where the `-b` option specifies the baudrate, and `/dev/ttyUSB0` is the mount point address we learned earlier.
 
