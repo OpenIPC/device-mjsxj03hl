@@ -3,9 +3,9 @@
 
 ![Изображение](https://user-images.githubusercontent.com/88727968/222164240-66044bf1-16da-4ea2-af38-6fd3d3fb1b92.png)
 
-## Warning! This version of the manual is outdated and is being revised. Performing actions may damage your device!
 
-Attention! Any changes you make will void your warranty for this device! The author is not responsible for any damage resulting from any actions of the user!
+> [!WARNING]
+> Attention! Any changes you make will void your warranty for this device! The author is not responsible for any damage resulting from any actions of the user!
 _______________
 ## Preparation
 ### Connecting UART adapter
@@ -31,7 +31,10 @@ _____________________________
 
 ### Disassembling
 
-Currently, the camera only supports flashing via UART adapter, so we need to disassemble the camera to perform the operations. **Remember that this will void your manufacturer's warranty!**
+Currently, the camera only supports flashing via UART adapter, so we need to disassemble the camera to perform the operations. 
+
+> [!WARNING]
+> Remember that this will void your manufacturer's warranty!
 
 We will need:
 - The device
@@ -101,7 +104,10 @@ ____________
 Unfortunately, the MJSXJ03HL camera does not support boot interruption by sending a key combination. For this reason, boot interrupting and gaining access to the downloader console will be done by us manually. To do this, it will be necessary to close some contacts of the [memory chip](https://github.com/OpenIPC/device-mjsxj03hl#memory-chip).
 For how to do this, read [here](https://github.com/OpenIPC/wiki/blob/master/en/help-uboot.md#shorting-pins-on-flash-chip).
 Carefully study the above manual, find the memory chip and the necessary contacts, prepare what you will close the contacts with. All manipulations will have to be done quickly enough.
-ATTENTION!!! You take full responsibility for your actions!
+
+> [!WARNING]
+> ATTENTION!!! You take full responsibility for your actions!
+
 The following is the sequence of actions to gain access to the bootloader console:
 1. Connect the camera to the UART adapter
 2. Connect the UART adapter to the computer's USB port.
@@ -117,7 +123,9 @@ The following is the sequence of actions to gain access to the bootloader consol
 Unfortunately, the manufacturer for this camera greatly limited the capabilities of U-boot, this will create a series of obstacles for us in the future until we flash U-boot from OpenIPC. But first we need to save the stock firmware of the camera.
 __________
 ### Save the original firmware
-Attention! Do not let this point! The backup of the factory firmware will allow you to restore the performance of the device, if suddenly something goes wrong.
+
+> [!IMPORTANT]
+> Attention! Do not let this point! The backup of the factory firmware will allow you to restore the performance of the device, if suddenly something goes wrong.
 
 We will need:
 - Camera disassembled with connected UART
@@ -161,7 +169,7 @@ Put the file on your SD card.
 **ATTENTION!** _If you are using the same memory card as in the previous paragraph, pre-format it in the Fat32 file system with the MBR table (MS-DOS). Do not use the GPT table! If you are using Windows OS - this is the most common formatting. Just connect the memory card and Windows itself will offer to format it._
 _________________
 
-### Bootloader flashing (UBoot) (fixed)
+### Bootloader flashing (UBoot) 
 So, we have our camera connected to UART, with a memory card formatted in Fat32 with a binary bootloader file on it inserted into the slot.
 Just in case, let's run
 ```
@@ -228,7 +236,8 @@ firstboot
 ```
 **Congratulations on successfully installing OpenIPC!**
 
-Don't forget to delete the firmware files and script from your memory card!
+> [!IMPORTANT]
+> Don't forget to delete the firmware files and script from your memory card!
 
 _____
 ## Tune-up
